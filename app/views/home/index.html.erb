@@ -1,0 +1,16 @@
+<h1>
+  Garble!
+</h1>
+
+<%= form_for :phrase, url: root_path, html: { method: :get } do |f| %>
+  <%= f.label :original_text, 'Enter a phrase' %>
+  <%= f.text_area :original_text, size: '100x20' %>
+  <% if @phrase.translated_text.present? %>
+    <h3>Translated text</h3>
+    <div>
+      <%= @phrase.translated_text %>
+    </div>
+  <% end %>
+  <%= f.select :translator, Phrase::TRANSLATORS, include_blank: false %> <br />
+  <%= f.submit 'Garble!' %>
+<% end %>
